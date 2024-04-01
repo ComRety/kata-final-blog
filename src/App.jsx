@@ -1,19 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import './reset.css';
+import './style.css';
+import Articles from './main/articles/Articles';
+import UnLogin from './UnLogin';
+import Login from './Login';
+import OneArticle from './main/oneArticle/OneArticle';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<UnLogin />}>
+        <Route index element={<Articles />} />
+        <Route path="articles" element={<Articles />} />
+        <Route path="articles/:id" element={<OneArticle />} />
+      </Route>
+      <Route path="/login" element={<Login />}>
+        <Route index element={<Articles />} />
+        <Route path="articles" element={<Articles />} />
+        <Route path="articles/:id" element={<OneArticle />} />
+      </Route>
+    </Routes>
   );
 }
 
