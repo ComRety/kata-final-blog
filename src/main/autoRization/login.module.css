@@ -1,0 +1,109 @@
+.block {
+  position: relative;
+  margin: 50px auto;
+  width: 400px;
+  height: 380px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 6px;
+  border: 1px rgba(217, 217, 217, 1) solid;
+  box-shadow: 0px 0.61px 2.93px 0px rgba(0, 0, 0, 0.0197);
+  box-shadow: 0px 1.46px 7.05px 0px rgba(0, 0, 0, 0.0283);
+  box-shadow: 0px 2.75px 13.27px 0px rgba(0, 0, 0, 0.035);
+  box-shadow: 0px 4.91px 23.68px 0px rgba(0, 0, 0, 0.0417);
+  box-shadow: 0px 9.19px 44.28px 0px rgba(0, 0, 0, 0.0503);
+  box-shadow: 0px 22px 106px 0px rgba(0, 0, 0, 0.07);
+  padding: 40px;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.form {
+  position: relative;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin: 5px 0;
+  width: auto;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  background-color: rgba(255, 255, 255, 1);
+  padding-left: 10px;
+}
+
+.inputError {
+  border: 1px solid rgba(245, 34, 45, 1);
+}
+.input::placeholder {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(191, 191, 191, 1);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 15px;
+}
+
+.error {
+  color: rgba(245, 34, 45, 1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.button {
+  width: 310px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba(24, 144, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+  margin: 30px auto 0;
+}
+
+.buttonN {
+  background-color: rgb(109, 131, 152);
+}
+
+.link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(24, 144, 255, 1);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0 0 0 5px;
+}
+
+.linkSpan {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(140, 140, 140, 1);
+}
+
+.blockLink {
+  text-align: center;
+  position: relative;
+  margin-top: -10px;
+}

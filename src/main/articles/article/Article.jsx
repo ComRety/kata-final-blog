@@ -1,35 +1,71 @@
-import avatar from '../../../image/2bf7cbea0e8e0ac709ec6af74b5bc3fa.png';
+import { Link } from 'react-router-dom';
+
 import like from '../../../image/LIke.svg';
 
 import classes from './articlle.module.css';
 
-export default function Article() {
+export default function Article({ item }) {
+  const date = () => {
+    const obj = {
+      1: 'January',
+      2: 'February',
+      3: 'March',
+      4: 'April',
+      5: 'May',
+      6: 'June',
+      7: 'July',
+      8: 'August',
+      9: 'September',
+      10: 'October',
+      11: 'November',
+      12: 'December',
+    };
+    const fullDate = new Date(item.createdAt);
+    const year = fullDate.getFullYear();
+    const month = fullDate.getMonth();
+    const day = fullDate.getDate();
+    return `${obj[month]} ${day}, ${year}`;
+  };
+
+  const text = (t, count) => {
+    let items = 0;
+    const array = [];
+    for (let i = 0; i < t.length; i += 1) {
+      if (items < count) {
+        items += 1;
+        array.push(t[i]);
+      }
+    }
+    array.push('...');
+    return array.join('');
+  };
+
   return (
     <div className={classes.article}>
       <div className={classes.blockOne}>
         <div className={classes.blockLeft}>
-          <div className={classes.title}>Some article title</div>
+          <Link to={`articles/${item.slug}`} className={classes.title}>
+            {text(item.title, 80)}
+          </Link>
           <div className={classes.blockLike}>
             <button type="button" className={classes.buttonLike}>
               <img alt="Like" src={like} />
             </button>
-            <span className={classes.likeText}>10</span>
+            <span className={classes.likeText}>{item.favoritesCount}</span>
           </div>
-          <div className={classes.tag}>Tag1</div>
+          <div className={classes.blockTags}>
+            {item.tagList.length > 0 ? item.tagList.map((i) => <div className={classes.tag}>{i}</div>) : null}
+          </div>
         </div>
         <div className={classes.blockRight}>
-          <div className={classes.name}>John Doe</div>
-          <div className={classes.data}>March 5, 2020 </div>
+          <div className={classes.name}>{item.author.username}</div>
+          <div className={classes.data}>{date()}</div>
           <div className={classes.avatar}>
-            <img alt="Аватарка" src={avatar} width="46px" height="46px" />
+            <img alt="Аватарка" src={item.author.image} width="46px" height="46px" />
           </div>
         </div>
       </div>
-      <div className={classes.blockTwo}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-      </div>
+      <div className={classes.blockTwo}>{text(item.description, 350)}</div>
     </div>
   );
 }

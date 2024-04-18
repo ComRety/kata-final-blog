@@ -35,6 +35,15 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'enforce',
+        explicitSpread: 'enforce',
+        exceptions: ['input', 'textarea'],
+      },
+    ],
     'no-param-reassign': [
       'error',
       {

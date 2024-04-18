@@ -1,16 +1,20 @@
+import { Link } from 'react-router-dom';
+
 import clasess from './header.module.css';
 
 export default function Header() {
   return (
     <header className={clasess.header}>
-      <div>Realworld Blog</div>
-      <div>
-        <button type="button" className={clasess.in}>
+      <Link to="/" className={clasess.titleBlog}>
+        Realworld Blog
+      </Link>
+      <div className={clasess.block}>
+        <Link to="/sign-in" className={clasess.in}>
           Sign In
-        </button>
-        <button type="button" className={clasess.up}>
+        </Link>
+        <Link to="sign-up" className={clasess.up}>
           Sing Up
-        </button>
+        </Link>
       </div>
     </header>
   );
