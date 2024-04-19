@@ -16,6 +16,12 @@
   text-decoration: none;
 }
 
+.overBlock {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
 .blockOne {
   display: flex;
   justify-content: space-between;
@@ -23,7 +29,6 @@
   width: 900px;
 }
 
-.blockLeft,
 .blockRight {
   display: grid;
   grid-template-columns: auto auto;
@@ -69,7 +74,7 @@
 
 .blockLike {
   display: flex;
-  align-items: center;
+  align-items: start;
   width: auto;
 }
 

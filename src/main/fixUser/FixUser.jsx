@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Form, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { updateLogin } from '../../store/signUp';
 
@@ -9,6 +9,8 @@ import classes from './fixUser.module.css';
 export default function FixUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = useSelector((store) => store.signUp.username);
+  const userEmail = useSelector((store) => store.signUp.email);
 
   const {
     register,
@@ -58,6 +60,7 @@ export default function FixUser() {
         <label htmlFor="Username" className={classes.label}>
           Username
           <input
+            defaultValue={userName}
             className={errors.Username ? `${classes.input} ${classes.inputError}` : classes.input}
             type="text"
             id="Username"
@@ -76,6 +79,7 @@ export default function FixUser() {
         <label htmlFor="Email address" className={classes.label}>
           Email address
           <input
+            defaultValue={userEmail}
             className={errors.Email ? `${classes.input} ${classes.inputError}` : classes.input}
             type="email"
             {...register('Email', {

@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Navigate, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -12,18 +12,35 @@ import NewAccount from './main/newAccount/NewAccount';
 import LoginAccount from './main/autoRization/LoginAccount';
 import { localUser } from './store/signUp';
 import FixUser from './main/fixUser/FixUser';
-import NewArticle from './main/newArticle/NewArticle';
+import NewArticle, { editArticle } from './main/newArticle/NewArticle';
+import RequerAuto from './hoc/RequerAuto';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<UnLogin />}>
       <Route index element={<Articles />} />
-      <Route path="articles" element={<Articles />} />
+      <Route path="articles" element={<Navigate to="/" replace />} />
       <Route path="articles/:id" element={<OneArticle />} loader={oneLoader} />
       <Route path="sign-up" element={<NewAccount />} />
       <Route path="sign-in" element={<LoginAccount />} />
       <Route path="profile" element={<FixUser />} />
-      <Route path="new-article" element={<NewArticle />} />
+      <Route
+        path="new-article"
+        element={
+          <RequerAuto>
+            <NewArticle />
+          </RequerAuto>
+        }
+      />
+      <Route
+        path="/articles/:id/edit"
+        element={
+          <RequerAuto>
+            <NewArticle />
+          </RequerAuto>
+        }
+        loader={editArticle}
+      />
     </Route>
   )
 );

@@ -1,14 +1,19 @@
 import { useForm } from 'react-hook-form';
-import { Form, Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Form, Link, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { signLogin } from '../../store/signUp';
+import { articlesAdd } from '../../store/articlesAddGet';
 
 import classes from './login.module.css';
 
 export default function LoginAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const page = useSelector((state) => state.articles.page);
+
+  const fromPage = location.state?.from?.pathname || '/';
 
   const {
     register,
@@ -28,7 +33,8 @@ export default function LoginAccount() {
     };
     const req = await dispatch(signLogin(obj));
     if (req.meta.requestStatus === 'fulfilled') {
-      return navigate('/');
+      dispatch(articlesAdd(page));
+      return navigate(fromPage);
     }
     if (req.meta.requestStatus === 'rejected') {
       const answer = JSON.parse(req.payload);

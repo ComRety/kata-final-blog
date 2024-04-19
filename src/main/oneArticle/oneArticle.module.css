@@ -16,19 +16,27 @@
   background: none;
   border: none;
   padding: 0;
+  display: flex;
+  justify-content: start;
 }
 
 .blockOne {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: auto;
 }
 
-.blockLeft,
+.overBlock {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
 .blockRight {
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 10px;
+  grid-row-gap: 5px;
 }
 
 .avatar {
@@ -37,7 +45,6 @@
 }
 
 .blockTwo {
-  margin-top: 10px;
   width: 700px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -46,16 +53,28 @@
 }
 
 .tag {
-  width: 38px;
+  width: auto;
+  padding: 1px 5px;
   height: 20px;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   font-weight: 300;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.tag:first-child {
+  border: 1px solid black;
+  color: black;
+}
+
+.blockTags {
+  display: flex;
+  gap: 10px;
 }
 
 .blockLike {
@@ -93,4 +112,33 @@
   padding: 0;
   display: flex;
   align-items: center;
+}
+
+.blockForBut {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.editButton {
+  width: 65px;
+  height: 31px;
+  border-radius: 5px;
+  border: 1px solid rgba(82, 196, 26, 1);
+  color: rgba(82, 196, 26, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.deleteBTN,
+.editButton {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.blockArt {
+  display: flex;
+  gap: 10px;
 }

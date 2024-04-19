@@ -1,16 +1,18 @@
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useNavigate, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { articleCreate } from '../../store/articlesAddGet';
+import { articleCreate, articlesAdd, updateArticle } from '../../store/articlesAddGet';
 
 import classes from './newArticle.module.css';
 
 export default function NewArticle() {
+  const article = useLoaderData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tag, setTag] = useState('');
+  console.log(article.article.tagList);
 
   const {
     register,
@@ -29,15 +31,24 @@ export default function NewArticle() {
   });
 
   const addTag = () => {
-    if (tag.trim()) {
-      append(tag);
+    if (tag.trim() && tag.trim().length < 15) {
+      append(tag.trim());
       setTag('');
       clearErrors('tagInput');
-    } else {
+    }
+    if (!tag.trim()) {
       setError('tagInput', {
         type: 'form',
         message: 'Поле не должно быть пустым',
       });
+      setTag('');
+    }
+    if (tag.trim().length >= 15) {
+      setError('tagInput', {
+        type: 'form',
+        message: 'Тег не должен привышать 15 символов',
+      });
+      setTag('');
     }
   };
 
@@ -58,9 +69,18 @@ export default function NewArticle() {
         tagList: data.tags,
       },
     };
-    const req = await dispatch(articleCreate(obj));
-    if (req.meta.requestStatus === 'fulfilled') {
-      return navigate('/');
+    if (article) {
+      const req = await dispatch(updateArticle({ obj, slug: article.article.slug }));
+      if (req.meta.requestStatus === 'fulfilled') {
+        dispatch(articlesAdd(1));
+        return navigate('/');
+      }
+    } else {
+      const req = await dispatch(articleCreate(obj));
+      if (req.meta.requestStatus === 'fulfilled') {
+        dispatch(articlesAdd(1));
+        return navigate('/');
+      }
     }
     return null;
   };
@@ -76,6 +96,7 @@ export default function NewArticle() {
             type="text"
             id="Title"
             placeholder="Title"
+            defaultValue={article ? article.article.title : null}
             {...register('Title', {
               required: 'Поле обязательно к заполнению',
             })}
@@ -87,6 +108,7 @@ export default function NewArticle() {
           <input
             className={errors.Email ? `${classes.input} ${classes.inputError}` : classes.input}
             type="text"
+            defaultValue={article ? article.article.description : null}
             id="Short description"
             {...register('Description', {
               required: 'Поле обязательно к заполнению',
@@ -102,6 +124,7 @@ export default function NewArticle() {
               errors.Password ? `${classes.input} ${classes.inputError}` : `${classes.input} ${classes.textInput}`
             }
             type="text"
+            defaultValue={article ? article.article.body : null}
             placeholder="Text"
             id="Text"
             {...register('Text', {
@@ -158,3 +181,9 @@ export default function NewArticle() {
     </div>
   );
 }
+
+export const editArticle = async ({ params }) => {
+  const { id } = params;
+  const res = await fetch(`https://blog.kata.academy/api/articles/${id}`);
+  return res.json();
+};

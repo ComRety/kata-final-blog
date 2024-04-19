@@ -128,10 +128,10 @@ const signUp = createSlice({
       })
       .addCase(updateLogin.fulfilled, (state, action) => {
         state.image = action.payload.user.image;
-        state.image = action.payload.user.image;
-        state.image = action.payload.user.image;
-        state.image = action.payload.user.image;
-        state.image = action.payload.user.image;
+        state.email = action.payload.user.email;
+        state.username = action.payload.user.username;
+        state.bio = action.payload.user.bio;
+        state.token = action.payload.user.token;
         state.loadingStatus = 'idle';
         state.error = null;
       })
