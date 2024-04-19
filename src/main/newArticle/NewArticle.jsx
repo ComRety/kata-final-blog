@@ -12,7 +12,6 @@ export default function NewArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tag, setTag] = useState('');
-  console.log(article.article.tagList);
 
   const {
     register,
