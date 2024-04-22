@@ -87,7 +87,13 @@ export default function Article({ item }) {
             </div>
           </div>
           <div className={classes.blockTags}>
-            {item.tagList.length > 0 ? item.tagList.map((i) => <div className={classes.tag}>{i}</div>) : null}
+            {item.tagList.length > 0
+              ? item.tagList.map((i) => (
+                  <div key={`i${Math.random()}`} className={classes.tag}>
+                    {i}
+                  </div>
+                ))
+              : null}
           </div>
         </div>
         <div className={classes.blockRight}>

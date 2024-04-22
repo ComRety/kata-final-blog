@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { Link, useNavigate, useLoaderData } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,12 +60,14 @@ export default function OneArticle() {
       if (!item.article.favorited) {
         const req = await dispatch(likeArticle(item.article.slug));
         if (req.meta.requestStatus === 'fulfilled') {
+          navigate(0);
           dispatch(articlesAdd(page));
         }
       }
       if (item.article.favorited) {
         const req = await dispatch(unLikeArticle(item.article.slug));
         if (req.meta.requestStatus === 'fulfilled') {
+          navigate(0);
           dispatch(articlesAdd(page));
         }
       }
@@ -88,7 +91,11 @@ export default function OneArticle() {
           </div>
           <div className={classes.blockTags}>
             {item.article.tagList.length > 0
-              ? item.article.tagList.map((i) => <div className={classes.tag}>{i}</div>)
+              ? item.article.tagList.map((i) => (
+                  <div key={`i${Math.random()}`} className={classes.tag}>
+                    {i}
+                  </div>
+                ))
               : null}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { Form, useNavigate, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { articleCreate, articlesAdd, updateArticle } from '../../store/articlesAddGet';
 
@@ -28,6 +28,16 @@ export default function NewArticle() {
     control,
     name: 'tags',
   });
+
+  useEffect(() => {
+    if (article) {
+      if (article.article.tagList.length > 0) {
+        article.article.tagList.forEach((i) => {
+          append(i);
+        });
+      }
+    }
+  }, []);
 
   const addTag = () => {
     if (tag.trim() && tag.trim().length < 15) {
