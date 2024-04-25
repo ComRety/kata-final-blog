@@ -96,7 +96,7 @@ export default function EditArticlePost() {
 
   return (
     <div className={classes.block}>
-      <h2 className={classes.title}>Create new article</h2>
+      <h2 className={classes.title}>Edit article</h2>
       <Form className={classes.form} method="post" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="Title" className={classes.label}>
           Title
