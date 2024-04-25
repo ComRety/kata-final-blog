@@ -146,7 +146,7 @@ export const oneLoader = async ({ params }) => {
   if (token) {
     const res = await fetch(`https://blog.kata.academy/api/articles/${id}`, {
       headers: {
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
     });
     return res.json();

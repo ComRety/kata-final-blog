@@ -10,9 +10,10 @@ import OneArticle, { oneLoader } from './main/oneArticle/OneArticle';
 import { articlesAdd } from './store/articlesAddGet';
 import NewAccount from './main/newAccount/NewAccount';
 import LoginAccount from './main/autoRization/LoginAccount';
-import { localUser } from './store/signUp';
+import { getCurrentUser } from './store/signUp';
 import FixUser from './main/fixUser/FixUser';
-import NewArticle, { editArticle } from './main/newArticle/NewArticle';
+import NewArticle from './main/newArticle/NewArticle';
+import EditArticlePost, { editArticle } from './main/newArticle/EditArticlePost';
 import RequerAuto from './hoc/RequerAuto';
 
 const router = createBrowserRouter(
@@ -36,7 +37,7 @@ const router = createBrowserRouter(
         path="/articles/:id/edit"
         element={
           <RequerAuto>
-            <NewArticle />
+            <EditArticlePost />
           </RequerAuto>
         }
         loader={editArticle}
@@ -50,7 +51,7 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      dispatch(localUser(loggedInUser));
+      dispatch(getCurrentUser());
     }
   }, []);
 

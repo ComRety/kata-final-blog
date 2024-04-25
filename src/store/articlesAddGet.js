@@ -8,7 +8,7 @@ export const articlesAdd = createAsyncThunk('articles/articlesAdd', async (page,
         `https://blog.kata.academy/api/articles?limit=5&offset=${page === 1 ? 0 : page * 5}`,
         {
           headers: {
-            Authorization: `Token ${JSON.parse(token).user.token}`,
+            Authorization: `Token ${token}`,
           },
         }
       );
@@ -36,7 +36,7 @@ export const articleCreate = createAsyncThunk('articles/articleCreate', async (b
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -56,7 +56,7 @@ export const deleteArticle = createAsyncThunk('articles/deleteArticle', async (s
     const response = await fetch(`https://blog.kata.academy/api/articles/${slug}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
     });
     if (!response.ok) {
@@ -76,7 +76,7 @@ export const updateArticle = createAsyncThunk('articles/updateArticle', async (b
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
       body: JSON.stringify(obj),
     });
@@ -96,7 +96,7 @@ export const likeArticle = createAsyncThunk('articles/likeArticle', async (slug,
     const response = await fetch(`https://blog.kata.academy/api/articles/${slug}/favorite`, {
       method: 'POST',
       headers: {
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
     });
     const array = await response.json();
@@ -115,7 +115,7 @@ export const unLikeArticle = createAsyncThunk('articles/unLikeArticle', async (s
     const response = await fetch(`https://blog.kata.academy/api/articles/${slug}/favorite`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Token ${JSON.parse(token).user.token}`,
+        Authorization: `Token ${token}`,
       },
     });
     const array = await response.json();
