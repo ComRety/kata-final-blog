@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import clasess from './header.module.css';
 
 export default function Header() {
+  console.log('onetwo3');
   return (
     <header className={clasess.header}>
       <Link to="/" className={clasess.titleBlog}>
