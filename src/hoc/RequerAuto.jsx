@@ -8,6 +8,6 @@ export default function RequerAuto({ children }) {
   if (!token) {
     return <Navigate to="/sign-in" state={{ from: location }} />;
   }
-
+  console.log('меня скушали и удалили');
   return children;
 }
