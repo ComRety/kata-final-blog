@@ -59,6 +59,7 @@ function App() {
     console.log('баран тупой');
     console.log('yes');
     console.log('or no?');
+    console.log('точно тупой');
     dispatch(articlesAdd(1));
   }, []);
   return <RouterProvider router={router} />;
