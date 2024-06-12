@@ -56,6 +56,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log('баран тупой');
     dispatch(articlesAdd(1));
   }, []);
   return <RouterProvider router={router} />;
